@@ -1,23 +1,40 @@
-// Remove trash
+// Remove some empty space on top?
 const recommendedPostsDivs = document.querySelectorAll('.container.header-container.overflow-hidden');
 recommendedPostsDivs.forEach(div => {
   div.remove();
 });
 
-const recommendedPostsDivs2 = document.querySelectorAll('.recommended-posts-container');
-recommendedPostsDivs2.forEach(div => {
-  div.remove();
+// Remove big panel on top of the page
+browser.storage.local.get('removeTopTrashSetting', result => {
+  const removeTopTrashSetting = result.removeTopTrashSetting;
+  if (removeTopTrashSetting) {
+
+    const recommendedPostsDivs2 = document.querySelectorAll('.recommended-posts-container');
+    recommendedPostsDivs2.forEach(div => {
+      div.remove();
+    });
+  }
 });
 
-const recommendedPostsDivs3 = document.querySelectorAll('.col-lg-4.col-md-12.col-sm-12.col-xs-12.col-12.sidebar.is-sticked');
-recommendedPostsDivs3.forEach(div => {
-  div.remove();
+//--------------------Sidebar #1
+console.log("1111111111.....");
+//browser.storage.local.set({ "removeSidebarSetting" : false  });
+
+browser.storage.local.get('removeSidebarSetting', result => {
+  const removeSidebarSetting = result.removeSidebarSetting;
+  if (removeSidebarSetting) {
+    const recommendedPostsDivs3 = document.querySelectorAll('.col-lg-4.col-md-12.col-sm-12.col-xs-12.col-12.sidebar.is-sticked');
+    recommendedPostsDivs3.forEach(div => {
+      div.remove();
+    });
+    
+    const recommendedPostsDivs4 = document.querySelectorAll('.col-lg-4.col-md-12.col-sm-12.col-xs-12.col-12.sidebar');
+    recommendedPostsDivs4.forEach(div => {
+      div.remove();
+    });
+  }
 });
 
-const recommendedPostsDivs4 = document.querySelectorAll('.col-lg-4.col-md-12.col-sm-12.col-xs-12.col-12.sidebar');
-recommendedPostsDivs4.forEach(div => {
-  div.remove();
-});
 
 const recommendedPostsDivs5 = document.querySelectorAll('.intro');
 recommendedPostsDivs5.forEach(header => {
@@ -29,9 +46,15 @@ recommendedPostsDivs6.forEach(div => {
   div.remove();
 });
 
-const recommendedPostsDivs7 = document.querySelectorAll('.nc-submeta-info');
-recommendedPostsDivs7.forEach(div => {
-  div.remove();
+// ------ AUTHOR // COMMENTS LINKS
+browser.storage.local.get('removeCommentsLinkSetting', result => {
+  const removeCommentsLinkSetting = result.removeCommentsLinkSetting;
+  if (removeCommentsLinkSetting) {
+    const recommendedPostsDivs7 = document.querySelectorAll('.nc-submeta-info');
+    recommendedPostsDivs7.forEach(div => {
+      div.remove();
+    });
+  }
 });
 
 const recommendedPostsDivs8 = document.querySelectorAll('.small-moneymaker-container.moneymaker-container');
@@ -50,8 +73,17 @@ articleElements.forEach(article => {
   article.style.margin = '2px';
   article.style.padding = '4px';
   article.style.fontSize = '12px';
-  article.style.maxWidth = '30%';
-  article.style.height = '400px';
+  browser.storage.local.get('threeColumnsSetting', result => {
+    const threeColumnsSetting = result.threeColumnsSetting;
+    //If Remove Sidebar = yes, then make the MAIN part wider
+    if (threeColumnsSetting) {
+      article.style.maxWidth = '32%';
+    }
+    else{
+      article.style.maxWidth = '49%';
+    }
+  });
+  article.style.height = '300px';
   article.style.display = 'inline-block';
 });
 
@@ -76,7 +108,7 @@ postTitleElements.forEach(h2 => {
 const postTextElements = document.querySelectorAll('.promos-box-wrapper');
 postTextElements.forEach(div => {
   div.style.margin = '5px';
-  div.style.height = '100px';
+  div.style.height = 'auto';
   div.style.maxHeight = '100px';
   div.style.overflowWrap = 'break-word';
 });
@@ -90,21 +122,37 @@ documentElements.forEach(div => {
 // Modify MAIN elements with class "col-lg-8 col-md-12 col-sm-12 col-xs-12 col-12 content-column"
 const mainElements = document.querySelectorAll('.col-lg-8.col-md-12.col-sm-12.col-xs-12.col-12.content-column');
 mainElements.forEach(main => {
-  main.style.maxWidth = '100%';
+  browser.storage.local.get('removeSidebarSetting', result => {
+    const removeSidebarSetting = result.removeSidebarSetting;
+    //If Remove Sidebar = yes, then make the MAIN part wider
+    if (removeSidebarSetting) {
+      main.style.maxWidth = '100%';
+    }
+    else{
+      main.style.maxWidth = '70%';
+    }
+  });
   main.style.marginRight = '10px'; // Adjust margin as needed
 });
                                    
 // Modify DIV elements with class "text-wrapper lead-wrapper lead-shorten with-offer ddd-truncated"
 const textWrapperDivs = document.querySelectorAll('.text-wrapper.lead-wrapper.lead-shorten.with-offer.ddd-truncated');
 textWrapperDivs.forEach(div => {
-  div.style.fontSize = '14px';
+  div.style.fontSize = '13px';
+  div.style.lineHeight = '18px';
   div.style.height = '200px';
+  div.style.textAlign = 'justify';
+  div.style.margin = '0 12px 0 0';
 });
 
 const textWrapperDivs2 = document.querySelectorAll('.post:not(.post-single) .lead-wrapper.lead-shorten.with-offer');
 textWrapperDivs2.forEach(div => {
-  div.style.height = '120px';
-  div.style.maxHeight = '120px';
+  div.style.fontSize = '13px';
+  div.style.lineHeight = '18px';
+  div.style.height = 'auto';
+  div.style.maxHeight = '150px';
+  div.style.textAlign = 'justify';
+  div.style.margin = '0 12px 0 0';
 });
 
 const textWrapperDivs3 = document.querySelectorAll('.lead-wrapper.lead-shorten:not(.with-offer)');
@@ -113,6 +161,8 @@ textWrapperDivs3.forEach(div => {
   div.style.height = '250px';
   div.style.maxHeight = '250px';
   div.style.color = 'rgb(179, 184, 208)';
+  div.style.textAlign = 'justify';
+  div.style.margin = '0 12px 0 0';
 });
 
 
@@ -137,7 +187,6 @@ buttonElements.forEach(div => {
   div.style.paddingRight = '10px';
 });
 
-// Modify IMG elements with class "img-fluid thumb-image"
 const buttonElements2 = document.querySelectorAll('.post-read-more');
 buttonElements2.forEach(a => {
   a.style.paddingLeft = '5px';
@@ -149,4 +198,26 @@ buttonElements2.forEach(a => {
   a.style.textDecoration = 'none';
   a.style.height = '15px';
   a.style.backgroundColor = '#026da1';
+});
+
+// Make post platform & category info more compact
+const metaElements = document.querySelectorAll('.nc-meta');
+buttonElements2.forEach(div => {
+  div.style.maxHeight = '50px';
+  div.style.overflow = 'hidden';
+});
+const ulElements = document.querySelectorAll('.tags-list');
+ulElements.forEach(ul => {
+  ul.style.gap = '1px';
+});
+// Remove tags & categories
+
+browser.storage.local.get('removeTagsSetting', result => {
+  const removeTagsSetting = result.removeTagsSetting;
+  if (removeTagsSetting) {
+    const recommendedPostsDivs10 = document.querySelectorAll('.nc-meta');
+    recommendedPostsDivs10.forEach(div => {
+      div.remove();
+    });
+  }
 });

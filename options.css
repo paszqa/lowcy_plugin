@@ -1,0 +1,58 @@
+body {
+    background-color: #2c2c2c;
+    color: white;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  input[type="checkbox"] {
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  
+  /* Customize the appearance of the checkbox */
+  input[type="checkbox"]::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid white;
+    background-color: transparent;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  
+  input[type="checkbox"]:checked::before {
+    background-color: white;
+  }
+  
+  input[type="checkbox"]:focus::before {
+    box-shadow: 0 0 3px 2px #4a90e2;
+  }
+  
+  /* Style similar to Firefox add-ons page */
+  label {
+    padding: 8px;
+    background-color: #3c3c3c;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+  }
+  
+  label:hover {
+    background-color: #4c4c4c;
+  }
+  
+  h1 {
+    color: #ececec;
+  }

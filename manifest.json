@@ -5,11 +5,19 @@
     "description": "Improves LowcyGier.pl landing page browsing experience",
     "author": "Paszq",
     "homepage_url": "https://github.com/paszqa",
-    "permissions": ["tabs"],
+    "permissions": ["tabs", "storage"],
+    "options_ui": {
+      "page": "options.html",
+      "open_in_tab": true
+    },
     "content_scripts": [
       {
         "matches": ["https://lowcygier.pl/"],
         "js": ["content.js"]
+      },
+      {
+        "matches": ["https://lowcygier.pl/*", "https://lowcygier.pl/*/*"],
+        "js": ["subpage-content.js"]
       }
     ],
     "browser_action": {
@@ -19,5 +27,5 @@
       },
       "default_title": "Fixes for LowcyGier.pl I guess"
     }
-  }
+  } 
   
