@@ -1,9 +1,10 @@
-// Remove some empty space on top?
+// Remove breadcrumbs on top
 const recommendedPostsDivs = document.querySelectorAll('.container.header-container.overflow-hidden');
 recommendedPostsDivs.forEach(div => {
   div.remove();
 });
-                                                          
+      
+// Remove alert boxes
 const recommendedPostsDivs2 = document.querySelectorAll('.alert-grey');
 recommendedPostsDivs2.forEach(div => {
   div.remove();
@@ -116,3 +117,25 @@ divContainerElements.forEach(div => {
 });
 
 
+//================= Video fixes========================
+
+
+const videoElements = document.querySelectorAll('.wp-block-embed.is-type-video');
+videoElements.forEach(div => {
+    div.style.width = '30%';
+    div.style.margin = 'auto';
+    div.style.padding = '5px'; // Optional padding
+});
+
+
+//=============Remove comments :D=====================
+
+browser.storage.local.get('removeSimilarSetting', result => {
+  const removeSimilarSetting = result.removeSimilarSetting;
+  if (removeSimilarSetting) {
+    const similarElement = document.querySelectorAll('.similar-posts-container');
+    similarElement.forEach(section => {
+      section.remove();
+    });
+  }
+});

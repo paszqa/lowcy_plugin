@@ -64,4 +64,16 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log("3: "+newSetting);
       browser.storage.local.set({ "removeTagsSetting" : newSetting });
     });
+    
+    //-----------------REACTION below articles------------
+    // Load user preference and update checkbox state
+    browser.storage.local.get('removeSimilarSetting', result => {
+      const removeSimilarSetting = result.removeSimilarSetting || false;
+      removeSimilarCheckbox.checked = removeSimilarSetting;
+      });
+  // Update user preference when checkbox changes
+    removeSimilarCheckbox.addEventListener('change', () => {
+    const newSetting = removeSimilarCheckbox.checked;
+    browser.storage.local.set({ "removeSimilarSetting" : newSetting });
+  });
   });

@@ -221,3 +221,11 @@ browser.storage.local.get('removeTagsSetting', result => {
     });
   }
 });
+
+//Fix font in news without offers:
+const recommendedPostsDivs11 = document.querySelectorAll('.text-wrapper.lead-wrapper');
+recommendedPostsDivs11.forEach(div => {
+  div.style.lineHeight = '20px';
+  div.style.fontSize = '13px';
+  div.style.color = 'rgb(179, 184, 208)';
+});
