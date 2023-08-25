@@ -1,11 +1,11 @@
 {
     "manifest_version": 2,
     "name": "LowcyGier.pl Fixes",
-    "version": "0.2.3",
+    "version": "0.3",
     "description": "Improves LowcyGier.pl landing page browsing experience",
     "author": "Paszq",
     "homepage_url": "https://github.com/paszqa",
-    "permissions": ["tabs", "storage", "activeTab"],
+    "permissions": ["tabs", "storage", "activeTab", "webRequest", "webRequestBlocking", "webNavigation"],
     "options_ui": {
       "page": "options.html",
       "open_in_tab": true

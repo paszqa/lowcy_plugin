@@ -76,4 +76,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const newSetting = removeSimilarCheckbox.checked;
     browser.storage.local.set({ "removeSimilarSetting" : newSetting });
   });
+
+
+  //-----------------COMMENTS below articles------------
+  // Load user preference and update checkbox state
+  browser.storage.local.get('removeCommentsSetting', result => {
+    const removeCommentsSetting = result.removeCommentsSetting || false;
+    removeCommentsCheckbox.checked = removeCommentsSetting;
+    });
+// Update user preference when checkbox changes
+removeCommentsCheckbox.addEventListener('change', () => {
+  const newSetting = removeCommentsCheckbox.checked;
+  browser.storage.local.set({ "removeCommentsSetting" : newSetting });
+});
   });

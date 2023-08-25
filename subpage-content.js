@@ -63,13 +63,19 @@ relatedArticlesElements.forEach(related => {
     related.style.fontSize = '12px';
 });
 
-//Main class width
+//Main class width 
 const mainElements = document.querySelectorAll('.col-lg-8.col-md-12.col-sm-12.col-xs-12.col-12.content-column');
 mainElements.forEach(mainThing => {
-    mainThing.style.maxWidth = '100%';
+    mainThing.style.maxWidth = '100% - 370px';
 });
-
-
+const mainElements2 = document.querySelectorAll('.main-container');
+mainElements2.forEach(mainThing => {
+    mainThing.style.maxWidth = '1634px';
+});
+const mainElements3 = document.querySelectorAll('.main-container.container');
+mainElements3.forEach(mainThing => {
+    mainThing.style.padding = '20px 20px 20px 260px;';
+});
 
 
 //==============Article text fixes==============================================================================
@@ -139,3 +145,57 @@ browser.storage.local.get('removeSimilarSetting', result => {
     });
   }
 });
+
+//============= Remove comments and disqus recommendations================
+browser.storage.local.get('removeCommentsSetting', result => {
+  const removeCommentsSetting = result.removeCommentsSetting;
+  if (removeCommentsSetting) {
+    const similarElement = document.querySelectorAll('.comments.entry');
+    similarElement.forEach(section => {
+      section.remove();
+    });
+    const similarElement2 = document.querySelectorAll('#disqus_recommendations');
+    similarElement2.forEach(section => {
+      section.remove();
+    });
+
+
+    
+  }
+});
+
+
+//===========Remove useless footer stuff at the bottom because it goes crazy====================
+
+const shittyElement = document.querySelectorAll('.footer-widget');
+shittyElement.forEach(thing => {
+  thing.remove();
+});
+
+const shittyElement2 = document.querySelectorAll('.resize-sensor');
+shittyElement2.forEach(thing => {
+  thing.remove();
+});
+
+const shittyElement3 = document.querySelectorAll('sidebar.is-sticked');
+shittyElement3.forEach(aside => {
+  aside.style.width = '1px';
+  aside.remove();
+});
+/*
+// Intercept and block the main.js script
+browser.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    if (details.url.includes('main.js?v=c0c5d939')) {
+      return { cancel: true };
+    }
+  },
+  { urls: ['https://lowcygier.pl/wp-content/themes/lowcygier/assets/scripts/main.js?v=c0c5d939', 'moz-extension://7da54353-fd98-4a3c-b3b1-55be9e5a03bf/lockdown-install.js', 'moz-extension://7da54353-fd98-4a3c-b3b1-55be9e5a03bf/lockdown-run.js'] },
+  ['blocking']
+);
+// Inject a blocking script to prevent main.js from loading
+const blockingScript = document.createElement('script');
+blockingScript.textContent = 'Object.defineProperty(window, "main_js_blocked", { value: true, writable: false });';
+(document.head || document.documentElement).appendChild(blockingScript);
+blockingScript.remove();
+*/
